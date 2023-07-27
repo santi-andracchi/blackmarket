@@ -40,7 +40,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     text: "signup_title".localized,
     textColor: .labelTitle
   )
-  private lazy var signupButton = UIButton.primaryButton(
+  private lazy var signupButton = UIButton.secondaryButton(
     color: .enableButton,
     title: "signup_button_title".localized,
     titleColor: .textEnableButton,
@@ -164,7 +164,8 @@ private extension SignInViewController {
         
         signupButton.leadingAnchor.constraint(equalTo: signupCardView.leadingAnchor, constant: horizontalMargin),
         signupButton.trailingAnchor.constraint(equalTo: signupCardView.trailingAnchor, constant: -horizontalMargin),
-        signupButton.topAnchor.constraint(equalTo: signupTitleLabel.bottomAnchor, constant: 16)
+        signupButton.topAnchor.constraint(equalTo: signupTitleLabel.bottomAnchor, constant: 16),
+        signupButton.bottomAnchor.constraint(equalTo: signupCardView.bottomAnchor, constant: -16),
         
     ])
   }
