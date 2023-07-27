@@ -34,6 +34,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   )
   private lazy var forgetPasswordLabel = UILabel.titleLabel(
     text: "forgot_password_title".localized,
+    font: .h4Bold,
     textColor: .textLink
   )
   private lazy var signupTitleLabel = UILabel.titleLabel(

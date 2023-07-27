@@ -14,7 +14,8 @@ extension UITextField {
     isPassword: Bool = false,
     borderColor: CGColor = UIColor.black.cgColor,
     borderWidth: Double = 1.0,
-    roundedBorders: Double = 8.0
+    roundedBorders: Double = 8.0,
+    font: UIFont = .h4Regular
   ) {
     self.init()
     
@@ -25,6 +26,7 @@ extension UITextField {
     self.borderStyle = borderStyle
     self.layer.borderColor = borderColor
     self.layer.borderWidth = borderWidth
+    self.font = font
     self.setRoundBorders(roundedBorders)
     heightAnchor.constraint(equalToConstant: height).isActive = true
     isSecureTextEntry = isPassword

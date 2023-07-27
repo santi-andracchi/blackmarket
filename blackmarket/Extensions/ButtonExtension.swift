@@ -9,7 +9,7 @@ extension UIButton {
     titleColor: UIColor = .white,
     cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
-    font: UIFont = .h3Medium,
+    font: UIFont = .h4Bold,
     target: Any? = nil,
     action: Selector? = nil
   ) -> UIButton {
@@ -34,7 +34,7 @@ extension UIButton {
     titleColor: UIColor = .white,
     cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
-    font: UIFont = .h3Medium,
+    font: UIFont = .h4Bold,
     target: Any? = nil,
     action: Selector? = nil,
     borderCorlor: CGColor = UIColor.black.cgColor,

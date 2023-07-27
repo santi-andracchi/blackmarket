@@ -5,7 +5,7 @@ extension UILabel {
   
   static func titleLabel (
     text: String = "",
-    font: UIFont = .h2Regular,
+    font: UIFont = .h4Regular,
     textColor: UIColor = .yellow,
     backgroundColor: UIColor = .clear,
     numberOfLines: Int = 0,
