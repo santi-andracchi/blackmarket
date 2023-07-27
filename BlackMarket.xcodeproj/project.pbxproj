@@ -17,6 +17,8 @@
 		7527B24C2A53226E005BBDD5 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24B2A53226E005BBDD5 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7527B24E2A53226E005BBDD5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24D2A53226E005BBDD5 /* FirebaseAuth */; };
 		7527B2502A53226E005BBDD5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24F2A53226E005BBDD5 /* FirebaseCrashlytics */; };
+		752E43162A72CC9400AAF79E /* PassTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E43152A72CC9400AAF79E /* PassTextField.swift */; };
+		752E43182A72E16E00AAF79E /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E43172A72E16E00AAF79E /* BaseTextField.swift */; };
 		7591830D2A54AAB80037841B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7591830C2A54AAB80037841B /* Localizable.strings */; };
 		7591831B2A55D22C0037841B /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183132A55D2190037841B /* ViewControllerExtension.swift */; };
 		7591831C2A55D2310037841B /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183102A55D2190037841B /* FontExtension.swift */; };
@@ -95,6 +97,8 @@
 		2DD16233AEDFFEFE9F341C02 /* Pods-BlackMarket-BlackMarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackMarket-BlackMarketUITests.release.xcconfig"; path = "Target Support Files/Pods-BlackMarket-BlackMarketUITests/Pods-BlackMarket-BlackMarketUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3FE4EAD10AA4CFA6CE0BEB7E /* Pods-BlackMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlackMarket.debug.xcconfig"; path = "Target Support Files/Pods-BlackMarket/Pods-BlackMarket.debug.xcconfig"; sourceTree = "<group>"; };
 		5ED157257701439472DD45A0 /* Pods_BlackMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlackMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		752E43152A72CC9400AAF79E /* PassTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassTextField.swift; sourceTree = "<group>"; };
+		752E43172A72E16E00AAF79E /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		7591830C2A54AAB80037841B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7591830F2A55D2190037841B /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		759183102A55D2190037841B /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				759183602A57125F0037841B /* PlaceholderTextView.swift */,
+				752E43152A72CC9400AAF79E /* PassTextField.swift */,
+				752E43172A72E16E00AAF79E /* BaseTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 			files = (
 				7591836C2A5712990037841B /* AnalyticsService.swift in Sources */,
 				759183252A55D24C0037841B /* DictionaryExtension.swift in Sources */,
+				752E43182A72E16E00AAF79E /* BaseTextField.swift in Sources */,
 				759183722A5714AA0037841B /* UserServices.swift in Sources */,
 				75AD8A482A5350E800D88779 /* SessionManager.swift in Sources */,
 				7591832E2A55EEDB0037841B /* FirstViewModel.swift in Sources */,
@@ -751,6 +758,7 @@
 				7591835E2A5712560037841B /* AuthViewModelStateDelegate.swift in Sources */,
 				7591831D2A55D2340037841B /* UIApplicationExtension.swift in Sources */,
 				7591836A2A5712990037841B /* FirebaseAnalyticsService.swift in Sources */,
+				752E43162A72CC9400AAF79E /* PassTextField.swift in Sources */,
 				759183302A55EEDE0037841B /* SignInViewModel.swift in Sources */,
 				75C040B22A4DDF6600BEBFE0 /* AppDelegate.swift in Sources */,
 				7591835B2A5712560037841B /* ViewModelState.swift in Sources */,

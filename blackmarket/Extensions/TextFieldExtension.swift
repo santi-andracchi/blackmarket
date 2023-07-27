@@ -1,5 +1,7 @@
 import UIKit
 
+let button = UIButton(type: .custom)
+
 extension UITextField {
   
   convenience init(
@@ -12,8 +14,7 @@ extension UITextField {
     isPassword: Bool = false,
     borderColor: CGColor = UIColor.black.cgColor,
     borderWidth: Double = 1.0,
-    roundedBorders: Double = 8.0,
-    padding: Int = 12
+    roundedBorders: Double = 8.0
   ) {
     self.init()
     
@@ -22,8 +23,6 @@ extension UITextField {
     self.placeholder = placeholder
     self.backgroundColor = backgroundColor
     self.borderStyle = borderStyle
-    self.leftView = UIView(frame: CGRect(x: padding, y: padding, width: padding, height: padding))
-    self.leftViewMode = .always
     self.layer.borderColor = borderColor
     self.layer.borderWidth = borderWidth
     self.setRoundBorders(roundedBorders)
@@ -36,5 +35,20 @@ extension UITextField {
       string: placeholder ?? "",
       attributes: [NSAttributedString.Key.foregroundColor: color]
     )
+  }
+  
+  func enablePasswordToggle() {
+      button.setImage(UIImage(named: "visibility_off"), for: .normal)
+      button.setImage(UIImage(named: "visibility_on"), for: .selected)
+      button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+      button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+      rightView = button
+      rightViewMode = .always
+      button.alpha = 0.4
+  }
+  
+  @objc func togglePasswordView(_ sender: Any) {
+      isSecureTextEntry.toggle()
+      button.isSelected.toggle()
   }
 }

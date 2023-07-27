@@ -21,12 +21,12 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   private lazy var passwordTitleLabel = UILabel.titleLabel(
     text: "signin_password_title".localized,
     textColor: .labelTitle)
-  private lazy var emailField = UITextField(
+  private lazy var emailField = BaseTextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_email_placeholder".localized
   )
-  private lazy var passwordField = UITextField(
+  private lazy var passwordField = PassTextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_password_placeholder".localized,
@@ -181,6 +181,7 @@ private extension SignInViewController {
     signinCardView.layer.cornerRadius = 8.0
     signinCardView.addSubview(emailTitleLabel)
     signinCardView.addSubview(passwordTitleLabel)
+    passwordField.enablePasswordToggle()
     signinCardView.addSubview(passwordField)
     signinCardView.addSubview(emailField)
     signinCardView.addSubview(logInButton)
