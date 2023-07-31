@@ -34,15 +34,15 @@ internal class AuthenticationServices {
       endpoint: AuthEndpoint.signIn(email: email, password: password)
     ) { [weak self] (result: Result<User?, Error>, responseHeaders: [AnyHashable: Any]) in
       switch result {
-      case .success(let user):
-        if self?.saveUserSession(user, headers: responseHeaders) ?? false {
-          completion(.success(()))
-        } else {
-          completion(.failure(AuthError.userSessionInvalid))
+        case .success(let user):
+          if self?.saveUserSession(user, headers: responseHeaders) ?? false {
+            completion(.success(()))
+          } else {
+            completion(.failure(AuthError.userSessionInvalid))
+          }
+        case .failure(let error):
+          completion(.failure(error))
         }
-      case .failure(let error):
-        completion(.failure(error))
-      }
     }
   }
   

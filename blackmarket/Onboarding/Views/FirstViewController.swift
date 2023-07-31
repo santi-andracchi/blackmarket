@@ -10,13 +10,6 @@ class FirstViewController: UIViewController,
     text: "firstscreen_title".localized
   )
   
-//  private lazy var facebookSignButton = UIButton.primaryButton(
-//    color: .facebookButton,
-//    title: "firstscreen_facebook_button_title".localized,
-//    target: self,
-//    action: #selector(facebookLogin)
-//  )
-  
   private lazy var signInButton = UIButton.primaryButton(
     title: "firstscreen_login_button_title".localized,
     target: self,

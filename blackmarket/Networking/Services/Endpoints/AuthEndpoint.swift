@@ -3,7 +3,10 @@ import RSSwiftNetworking
 
 internal enum AuthEndpoint: RailsAPIEndpoint {
 
-  case signIn(email: String, password: String)
+  case signIn(
+    email: String,
+    password: String
+  )
   case signUp(
     email: String,
     password: String,

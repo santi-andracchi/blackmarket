@@ -9,22 +9,7 @@ class FirstViewModel {
   }
   
   weak var delegate: AuthViewModelStateDelegate?
-  
-//  func facebookLogin() {
-//    guard let viewController = delegate as? UIViewController else { return }
-//    let facebookKey: String = (try? Secret.value(for: .facebookKey)) ?? ""
-//    assert(!facebookKey.isEmpty, "Value for FacebookKey not found")
-//
-//    state = .network(state: .loading)
-//    let fbLoginManager = LoginManager()
-//    // Logs out before login, in case user changes facebook accounts
-//    fbLoginManager.logOut()
-//    fbLoginManager.logIn(
-//      permissions: ["email"],
-//      from: viewController,
-//      handler: checkFacebookLoginRequest
-//    )
-//  }
+
   
   // MARK: Facebook callback methods
   
