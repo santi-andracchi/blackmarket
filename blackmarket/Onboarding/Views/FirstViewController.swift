@@ -98,12 +98,7 @@ class FirstViewController: UIViewController,
   }
   
   // MARK: - Actions
-  
-//  @objc
-//  func facebookLogin() {
-//    viewModel.facebookLogin()
-//  }
-  
+
   @objc
   func signInTapped() {
     AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)

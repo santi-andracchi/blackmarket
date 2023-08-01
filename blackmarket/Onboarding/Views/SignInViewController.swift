@@ -46,7 +46,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     title: "signup_button_title".localized,
     titleColor: .textEnableButton,
     target: self,
-    action: #selector(tapOnSignInButton)
+    action: #selector(signUpTapped)
   )
 
   let activityIndicator = UIActivityIndicatorView()
@@ -198,6 +198,12 @@ private extension SignInViewController {
     signupCardView.addSubview(signupButton)
     view.addSubview(signupCardView)
   }
+
+  @objc
+  func signUpTapped() {
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
+  }
+
 }
 
 extension SignInViewController: SignInViewModelDelegate {

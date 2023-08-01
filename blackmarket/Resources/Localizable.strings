@@ -23,8 +23,13 @@
 "signup_title" = "Don’t have an account?";
 
 // MARK: SIGN UP SCREEN
-"signup_email_placeholder" = "Email";
-"signup_password_placeholder" = "Password";
+"signup_email_title" = "Email";
+"signup_password_title" = "Password";
+"signup_email_placeholder" = "Type your email";
+"signup_password_placeholder" = "Type your password";
+"signup_full_name_placeholder" = "Type your full name";
+"signup_full_name_title" = "Full Name";
+"signup_full_name_placeholder" = "Type your full name";
 "signup_confirm_password_placeholder" = "Confirm Password";
 "signup_button_title" = "Sign up";
 
