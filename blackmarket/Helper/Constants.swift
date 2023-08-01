@@ -8,9 +8,9 @@ struct App {
     localizedDescription: String = ""
   ) -> NSError {
     NSError(
-        domain: App.domain + "." + domain.rawValue,
-        code: code ?? 0,
-        userInfo: [NSLocalizedDescriptionKey: localizedDescription]
+      domain: App.domain + "." + domain.rawValue,
+      code: code ?? 0,
+      userInfo: [NSLocalizedDescriptionKey: localizedDescription]
     )
   }
 }

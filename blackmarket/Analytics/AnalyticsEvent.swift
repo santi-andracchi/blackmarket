@@ -16,11 +16,11 @@ protocol AnalyticsEvent {
  Enums are a nice way of grouping events semantically.
  For example you could have enums for AuthEvents, ProfileEvents, SearchEvents, etc.
  Any data structure that conforms to the AnalyticsEvent protocol will work though.
-*/
+ */
 enum Event: AnalyticsEvent {
   case login
   case registerSuccess(email: String)
-
+  
   public var name: String {
     switch self {
     case .login:
@@ -29,7 +29,7 @@ enum Event: AnalyticsEvent {
       return "register_success"
     }
   }
-
+  
   var parameters: [String: Any] {
     switch self {
     case .registerSuccess(let email):

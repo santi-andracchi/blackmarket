@@ -9,7 +9,7 @@ internal class SessionManager: CurrentUserSessionProvider {
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
   }
-
+  
   var currentSession: Session? {
     get {
       if
@@ -26,7 +26,7 @@ internal class SessionManager: CurrentUserSessionProvider {
       userDefaults.set(session, forKey: "ios-base-session")
     }
   }
-  
+
   func deleteSession() {
     userDefaults.removeObject(forKey: "ios-base-session")
   }

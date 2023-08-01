@@ -11,9 +11,9 @@ enum AuthViewModelState {
 }
 
 class SignUpViewModelWithEmail {
-
+  
   private let authServices: AuthenticationServices
-
+  
   init(authServices: AuthenticationServices = AuthenticationServices()) {
     self.authServices = authServices
   }
@@ -45,7 +45,7 @@ class SignUpViewModelWithEmail {
   }
   
   var hasValidData: Bool {
-      email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
+    email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
   func signup() {
@@ -56,7 +56,7 @@ class SignUpViewModelWithEmail {
       avatar64: UIImage.random()
     ) { [weak self] result in
       guard let self = self else { return }
-
+      
       switch result {
       case .success:
         self.state = .loggedIn

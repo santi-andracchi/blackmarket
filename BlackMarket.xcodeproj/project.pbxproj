@@ -125,7 +125,6 @@
 		7591835E2A5712560037841B /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591835A2A5712530037841B /* AuthViewModelStateDelegate.swift */; };
 		7591835F2A5712560037841B /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183592A5712530037841B /* NetworkState.swift */; };
 		759183622A57126B0037841B /* ActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183612A5712680037841B /* ActivityIndicatorPresenter.swift */; };
-		759183632A57126E0037841B /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183602A57125F0037841B /* PlaceholderTextView.swift */; };
 		759183692A5712980037841B /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183682A5712950037841B /* AnalyticsManager.swift */; };
 		7591836A2A5712990037841B /* FirebaseAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183652A5712940037841B /* FirebaseAnalyticsService.swift */; };
 		7591836B2A5712990037841B /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759183672A5712950037841B /* AnalyticsEvent.swift */; };
@@ -282,7 +281,6 @@
 		759183582A5712530037841B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		759183592A5712530037841B /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		7591835A2A5712530037841B /* AuthViewModelStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelStateDelegate.swift; sourceTree = "<group>"; };
-		759183602A57125F0037841B /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		759183612A5712680037841B /* ActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		759183652A5712940037841B /* FirebaseAnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsService.swift; sourceTree = "<group>"; };
 		759183662A5712940037841B /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
@@ -610,7 +608,6 @@
 		759183542A5712310037841B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				759183602A57125F0037841B /* PlaceholderTextView.swift */,
 				752E43152A72CC9400AAF79E /* PassTextField.swift */,
 				752E43172A72E16E00AAF79E /* BaseTextField.swift */,
 			);
@@ -1070,7 +1067,6 @@
 				759183242A55D2490037841B /* TextFieldExtension.swift in Sources */,
 				759183422A57116A0037841B /* AuthEndpoint.swift in Sources */,
 				7591831C2A55D2310037841B /* FontExtension.swift in Sources */,
-				759183632A57126E0037841B /* PlaceholderTextView.swift in Sources */,
 				7591833D2A57114C0037841B /* SessionHeadersProvider.swift in Sources */,
 				759183262A55D24F0037841B /* LabelExtension.swift in Sources */,
 				7591831F2A55D23B0037841B /* ButtonExtension.swift in Sources */,

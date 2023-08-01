@@ -57,7 +57,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -81,10 +81,10 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   @objc func credentialsChanged(_ sender: UITextField) {
     let newValue = sender.text ?? ""
     switch sender {
-      case emailField:
-        viewModel.email = newValue
-      case passwordField:
-        viewModel.password = newValue
+    case emailField:
+      viewModel.email = newValue
+    case passwordField:
+      viewModel.password = newValue
       default: break
     }
   }

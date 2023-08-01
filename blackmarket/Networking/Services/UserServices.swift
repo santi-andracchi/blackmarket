@@ -2,13 +2,13 @@ import Foundation
 import RSSwiftNetworking
 
 internal class UserServices {
-
+  
   private let apiClient: APIClient
-
+  
   init(apiClient: APIClient = iOSBaseAPIClient.shared) {
     self.apiClient = apiClient
   }
-
+  
   func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
     apiClient.request(
       endpoint: UserEndpoint.profile
@@ -23,7 +23,7 @@ internal class UserServices {
           completion(.failure(noUserFoundError))
           return
         }
-
+        
         UserDataManager.currentUser = user
         completion(.success(user))
       case .failure(let error):

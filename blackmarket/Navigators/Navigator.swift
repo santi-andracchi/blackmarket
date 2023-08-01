@@ -11,9 +11,9 @@ import UIKit
 open class BaseNavigator: Navigator {
   open var rootViewController: UINavigationController?
   open var currentViewController: UIViewController? {
-      rootViewController?.visibleViewController ?? rootViewController?.topViewController
+    rootViewController?.visibleViewController ?? rootViewController?.topViewController
   }
-
+  
   public required init(with route: Route) {
     rootViewController = route.screen.embedInNavigationController()
   }
@@ -29,13 +29,13 @@ open class BaseNavigator: Navigator {
 public protocol Navigator: AnyObject {
   /// The root navigation controller of your stack.
   var rootViewController: UINavigationController? { get set }
-
+  
   /// The currently visible ViewController
   var currentViewController: UIViewController? { get }
-
+  
   /// Convencience init to set your application starting screen.
   init(with route: Route)
-
+  
   /**
    Navigate from your current screen to a new route.
    - Parameters:
@@ -48,7 +48,7 @@ public protocol Navigator: AnyObject {
     to route: Route, with transition: TransitionType,
     animated: Bool, completion: (() -> Void)?
   )
-
+  
   /**
    Navigate from your current screen to a new entire navigator.
    Can only push a router as a modal.
@@ -59,12 +59,12 @@ public protocol Navigator: AnyObject {
    - completion: Completion handler.
    */
   func navigate(to router: Navigator, animated: Bool, completion: (() -> Void)?)
-
+  
   /**
    Handles backwards navigation through the stack.
    */
   func pop(animated: Bool)
-
+  
   /**
    Handles backwards navigation through the stack.
    - Parameters:
@@ -72,7 +72,7 @@ public protocol Navigator: AnyObject {
    - animated: Animate the transition or not.
    */
   func popTo(index: Int, animated: Bool)
-
+  
   /**
    Handles backwards navigation through the stack.
    - Parameters:
@@ -80,7 +80,7 @@ public protocol Navigator: AnyObject {
    - animated: Animate the transition or not.
    */
   func popTo(route: Route, animated: Bool)
-
+  
   /**
    Dismiss your current ViewController.
    - Parameters:
@@ -118,26 +118,26 @@ public extension Navigator {
       rootViewController = navigationController
     }
   }
-
+  
   func navigate(to router: Navigator, animated: Bool, completion: (() -> Void)?) {
     guard let viewController = router.rootViewController else {
       assert(false, "Navigator does not have a root view controller")
       return
     }
-
+    
     currentViewController?.present(
       viewController, animated: animated, completion: completion
     )
   }
-
+  
   func pop(animated: Bool = true) {
     rootViewController?.popViewController(animated: animated)
   }
-
+  
   func popToRoot(animated: Bool = true) {
     rootViewController?.popToRootViewController(animated: animated)
   }
-
+  
   func popTo(index: Int, animated: Bool = true) {
     guard
       let viewControllers = rootViewController?.viewControllers,
@@ -146,7 +146,7 @@ public extension Navigator {
     let viewController = viewControllers[index]
     rootViewController?.popToViewController(viewController, animated: animated)
   }
-
+  
   func popTo(route: Route, animated: Bool = true) {
     guard
       let viewControllers = rootViewController?.viewControllers,
@@ -156,7 +156,7 @@ public extension Navigator {
     else { return }
     rootViewController?.popToViewController(viewController, animated: true)
   }
-
+  
   func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
     currentViewController?.dismiss(animated: animated, completion: completion)
   }
@@ -175,7 +175,7 @@ public extension Navigator {
     transition.type = type
     transition.subtype = subtype
     window?.layer.add(transition, forKey: kCATransition)
-  
+    
     window?.rootViewController = viewController
   }
 }
@@ -191,10 +191,10 @@ public protocol Route {
   typealias TransitionConfigurator = (
     _ sourceVc: UIViewController?, _ destinationVc: UIViewController
   ) -> Void
-
+  
   /// The screen that should be returned for that Route.
   var screen: UIViewController { get }
-
+  
   /**
    Configuration callback executed just before pushing/presenting modally.
    Use this to set up any custom transition delegate, presentationStyle, etc.
@@ -213,17 +213,17 @@ public extension Route {
 
 /// Available Transition types for navigation actions.
 public enum TransitionType {
-
+  
   /// Presents the screen modally on top of the current ViewController
   case modal
-
+  
   /// Pushes the next screen to the rootViewController navigation Stack.
   case push
-
+  
   /// Resets the rootViewController navitationStack and set's the Route's screen
   /// as the initial view controller of the stack.
   case reset
-
+  
   /// Replaces the key window's Root view controller with the Route's screen.
   case changeRoot(
     transitionType: CATransitionType,

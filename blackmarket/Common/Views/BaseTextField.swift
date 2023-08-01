@@ -16,15 +16,15 @@ final class BaseTextField: UITextField {
     bottom: 5,
     right: 12
   )
-
+  
   override public func textRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.inset(by: padding)
   }
-
+  
   override public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.inset(by: padding)
   }
-
+  
   override public func editingRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.inset(by: padding)
   }

@@ -2,16 +2,16 @@ import Foundation
 
 /// Enclosing type to handle secret values configuration and fetching.
 enum Secret {
-
+  
   // All keys for secrets used within the app.
   enum Key: String {
     case facebookKey = "FacebookKey"
   }
-
+  
   enum Error: Swift.Error {
     case missingKey, invalidValue
   }
-
+  
   /// Fetches the secret value, if any, for the given key.
   /// - Parameters:
   ///   - key: The `Secret.Key` object to search the value for.
@@ -22,7 +22,7 @@ enum Secret {
     guard let object = Bundle.main.object(forInfoDictionaryKey: key.rawValue) else {
       throw Error.missingKey
     }
-
+    
     switch object {
     case let value as T:
       return value
