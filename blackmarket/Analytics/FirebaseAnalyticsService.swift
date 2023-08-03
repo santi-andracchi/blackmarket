@@ -10,7 +10,7 @@ class FirebaseAnalyticsService: AnalyticsService {
       let filePath = Bundle.main.path(forResource: googleServicesPath, ofType: "plist"),
       let firebaseOptions = FirebaseOptions(contentsOfFile: filePath) else {
       print("""
-          Failed to initialize firebase options, please check your configuration settings
+        Failed to initialize firebase options, please check your configuration settings
         """)
       return
     }

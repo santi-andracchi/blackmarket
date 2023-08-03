@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIColor {
-
+  
   //swiftlint:disable force_unwrapping
   static let labelTitle = UIColor(red: 0, green: 0.01, blue: 0.1, alpha: 1)
   static let disableButton = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1)

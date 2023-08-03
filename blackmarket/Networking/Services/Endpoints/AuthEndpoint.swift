@@ -9,8 +9,8 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
   )
   case signUp(
     email: String,
-    password1: String,
-    password2: String
+    password: String,
+    passwordConfirmation: String
   )
   case logout
   case deleteAccount
@@ -50,16 +50,12 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
           "password": password
         ]
       ]
-    case .signUp(let email, let password1, let password2):
-      //                 , let picture):
-      var parameters = [
+    case .signUp(let email, let password, let passwordConfirmation):
+      let parameters = [
         "email": email,
-        "password1": password1,
-        "password2": password2
+        "password1": password,
+        "password2": passwordConfirmation
       ]
-      //      if let pictureData = picture {
-      //        parameters["image"] = pictureData.asBase64Param()
-      //      }
       return ["user": parameters]
     default:
       return [:]

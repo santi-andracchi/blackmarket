@@ -7,7 +7,7 @@ class FirstViewModel {
       delegate?.didUpdateState(to: state)
     }
   }
-
+  
   weak var delegate: AuthViewModelStateDelegate?
   
 }

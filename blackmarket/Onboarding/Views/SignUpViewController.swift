@@ -196,8 +196,8 @@ private extension SignUpViewController {
   }
   
   @objc
-  func signUpTapped() {
-    viewModel.signup()
+  func signUpTapped() async {
+    await viewModel.signup()
   }
 }
 

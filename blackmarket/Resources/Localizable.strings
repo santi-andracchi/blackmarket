@@ -1,10 +1,10 @@
 /* 
-  Localizable.strings
-  BlackMarket
-
-  Created by Santiago Andracchi on 04/07/2023.
-  
-*/
+ Localizable.strings
+ BlackMarket
+ 
+ Created by Santiago Andracchi on 04/07/2023.
+ 
+ */
 
 // MARK: FIRST SCREEN
 "firstscreen_title" = "Welcome to \nRS iOS BASE.";

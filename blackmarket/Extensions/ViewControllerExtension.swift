@@ -27,9 +27,9 @@ extension UIViewController {
     }
     
     guard let viewController =
-      storyboard?.instantiateViewController(withIdentifier: identifier) else {
-        assert(false, "No view controller found with that identifier")
-        return
+            storyboard?.instantiateViewController(withIdentifier: identifier) else {
+      assert(false, "No view controller found with that identifier")
+      return
     }
     
     viewControllerConfigurationBlock?(viewController)
@@ -43,9 +43,9 @@ extension UIViewController {
   }
   
   func applyDefaultUIConfigs() {
-      let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-      backgroundImage.image = UIImage(named: "blackmarket_background.svg")
-      backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
-      self.view.insertSubview(backgroundImage, at: 0)
+    let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+    backgroundImage.image = UIImage(named: "blackmarket_background.svg")
+    backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+    self.view.insertSubview(backgroundImage, at: 0)
   }
 }

@@ -1,17 +1,30 @@
 import Foundation
 import RSSwiftNetworking
+import RSSwiftNetworkingAlamofire
 
-struct Session: Codable {
-  var uid: String?
-  var client: String?
-  var accessToken: String?
-  var expiry: Date?
+class Session: NSObject, Codable {
+  @objc dynamic var uid: String?
+  @objc dynamic var client: String?
+  @objc dynamic var accessToken: String?
+  @objc dynamic var expiry: Date?
   
   private enum CodingKeys: String, CodingKey {
     case uid
     case client
     case accessToken = "access-token"
     case expiry
+  }
+  
+  var isValid: Bool {
+    guard
+      let uid = uid,
+      let token = accessToken,
+      let client = client
+    else {
+      return false
+    }
+    
+    return !uid.isEmpty && !token.isEmpty && !client.isEmpty
   }
   
   init(

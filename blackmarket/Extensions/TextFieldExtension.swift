@@ -36,20 +36,20 @@ extension UITextField {
       attributes: [NSAttributedString.Key.foregroundColor: color]
     )
   }
-
+  
   func enablePasswordToggle() {
-      let button = UIButton(type: .custom)
-      button.setImage(UIImage(named: "visibility_off"), for: .normal)
-      button.setImage(UIImage(named: "visibility_on"), for: .selected)
-      button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
-      button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
-      rightView = button
-      rightViewMode = .always
-      button.alpha = 0.4
+    let button = UIButton(type: .custom)
+    button.setImage(UIImage(named: "visibility_off"), for: .normal)
+    button.setImage(UIImage(named: "visibility_on"), for: .selected)
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
+    button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+    rightView = button
+    rightViewMode = .always
+    button.alpha = 0.4
   }
-
+  
   @objc private func togglePasswordView(_ sender: UIButton) {
-      isSecureTextEntry.toggle()
-      sender.isSelected.toggle()
+    isSecureTextEntry.toggle()
+    sender.isSelected.toggle()
   }
 }

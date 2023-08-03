@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   )
   
   private lazy var deleteAccountButton = UIButton.primaryButton(
-    color: .red,
+    color: .disableButton,
     title: "homescreen_delete_button_title".localized,
     target: self,
     action: #selector(tapOnDeleteAccount)
@@ -61,18 +61,18 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   // MARK: - Actions
   
   @objc
-  func tapOnGetMyProfile(_ sender: Any) {
-    viewModel.loadUserProfile()
+  func tapOnGetMyProfile(_ sender: Any) async {
+    await viewModel.loadUserProfile()
   }
 
   @objc
-  func tapOnLogOutButton(_ sender: Any) {
-    viewModel.logoutUser()
+  func tapOnLogOutButton(_ sender: Any) async {
+    await viewModel.logoutUser()
   }
   
   @objc
-  func tapOnDeleteAccount(_ sender: Any) {
-    viewModel.deleteAccount()
+  func tapOnDeleteAccount(_ sender: Any) async {
+    await viewModel.deleteAccount()
   }
 }
 
