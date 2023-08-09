@@ -10,7 +10,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     title: "signin_button_title".localized,
     titleColor: .textDisableButton,
     target: self,
-    action: #selector(tapOnSignInButton)
+    action: #selector(tapOnLogInButton)
   )
   private lazy var signinCardView = UIView()
   private lazy var signupCardView = UIView()
@@ -89,8 +89,8 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     }
   }
   
-  @objc func tapOnSignInButton(_ sender: Any) async {
-    await viewModel.login()
+  @objc func tapOnLogInButton(_ sender: Any) {
+    viewModel.login()
   }
   
   func setLoginButton(enabled: Bool) {

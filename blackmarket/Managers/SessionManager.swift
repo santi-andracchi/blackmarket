@@ -1,6 +1,5 @@
 import UIKit
 import Combine
-import SwiftUI
 
 internal class SessionManager: CurrentUserSessionProvider {
   
@@ -37,13 +36,13 @@ internal class SessionManager: CurrentUserSessionProvider {
     currentSession = nil
   }
   
-  @MainActor func saveUser(session: Session) {
+  func saveUser(session: Session) {
     userDefaults.currentSession = session
   }
 }
 
 fileprivate extension UserDefaults {
-  @objc dynamic var currentSession: Session? {
+  dynamic var currentSession: Session? {
     get {
       if
         let data = data(forKey: SessionManager.SESSIONKEY),

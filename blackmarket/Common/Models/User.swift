@@ -2,15 +2,18 @@ import Foundation
 
 struct User: Codable {
   var id: Int
-  var username: String
-  var email: String
-  var image: URL?
+  var name: String?
+  var nickname: String?
+  var birth_date: String?
+  var email: String?
+  var profile_picture: String?
   
   private enum CodingKeys: String, CodingKey {
     case id
-    case username
+    case name
+    case nickname
     case email
-    case image = "profile_picture"
+    case profile_picture
   }
 }
 

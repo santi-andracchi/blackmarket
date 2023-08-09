@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   static let shared: AppDelegate = {
@@ -26,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     IQKeyboardManager.shared.enableAutoToolbar = false
     window?.rootViewController = AppNavigator.shared.rootViewController
     window?.makeKeyAndVisible()
-    
-    let rootVC = AppNavigator.shared.rootViewController
-    window?.rootViewController = rootVC
     
     return true
   }

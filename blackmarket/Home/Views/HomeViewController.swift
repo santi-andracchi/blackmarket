@@ -8,20 +8,6 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
     text: "homescreen_title".localized
   )
   
-  private lazy var logOutButton = UIButton.primaryButton(
-    color: .black,
-    title: "homescreen_logout_button_title".localized,
-    target: self,
-    action: #selector(tapOnLogOutButton)
-  )
-  
-  private lazy var deleteAccountButton = UIButton.primaryButton(
-    color: .disableButton,
-    title: "homescreen_delete_button_title".localized,
-    target: self,
-    action: #selector(tapOnDeleteAccount)
-  )
-  
   private lazy var getProfileButton: UIButton = {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +21,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
     
     return button
   }()
-    
+  
   let activityIndicator = UIActivityIndicatorView()
   
   private var viewModel: HomeViewModel
@@ -64,16 +50,6 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   func tapOnGetMyProfile(_ sender: Any) async {
     await viewModel.loadUserProfile()
   }
-
-  @objc
-  func tapOnLogOutButton(_ sender: Any) async {
-    await viewModel.logoutUser()
-  }
-  
-  @objc
-  func tapOnDeleteAccount(_ sender: Any) async {
-    await viewModel.deleteAccount()
-  }
 }
 
 private extension HomeViewController {
@@ -81,7 +57,7 @@ private extension HomeViewController {
   private func configureViews() {
     applyDefaultUIConfigs()
     view.addSubviews(
-      subviews: [welcomeLabel, logOutButton, deleteAccountButton, getProfileButton]
+      subviews: [welcomeLabel, getProfileButton]
     )
     activateConstraints()
   }
@@ -89,25 +65,12 @@ private extension HomeViewController {
   private func activateConstraints() {
     welcomeLabel.centerHorizontally(with: view)
     getProfileButton.center(view)
-    logOutButton.attachHorizontally(to: view)
-    deleteAccountButton.attachHorizontally(to: view)
     
     NSLayoutConstraint.activate([
-      welcomeLabel.topAnchor.constraint(
-        equalTo: view.topAnchor,
-        constant: UI.ViewController.topMargin
-      ),
-      deleteAccountButton.bottomAnchor.constraint(
-        equalTo: view.bottomAnchor,
-        constant: -UI.Defaults.margin
-      ),
-      logOutButton.bottomAnchor.constraint(
-        equalTo: deleteAccountButton.topAnchor,
-        constant: -UI.Button.spacing
-      )
+      welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UI.ViewController.topMargin)
     ])
   }
-
+  
 }
 
 extension HomeViewController: HomeViewModelDelegate {

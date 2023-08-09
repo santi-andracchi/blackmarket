@@ -21,10 +21,10 @@ class HomeViewModel {
       delegate?.didUpdateState(to: state)
     }
   }
-
+  
   private let userServices: UserServices
   private let authServices: AuthenticationServices
-
+  
   init(
     userServices: UserServices = UserServices(),
     authServices: AuthenticationServices = AuthenticationServices()
@@ -32,7 +32,7 @@ class HomeViewModel {
     self.userServices = userServices
     self.authServices = authServices
   }
-
+  
   func loadUserProfile() async {
     state = .network(state: .loading)
     
@@ -41,30 +41,6 @@ class HomeViewModel {
     case .success(let user):
       self.userEmail = user.data.email
       self.state = .loadedProfile
-    case .failure(let error):
-      self.state = .network(state: .error(error.localizedDescription))
-    }
-  }
-  
-  func logoutUser() async {
-    state = .network(state: .loading)
-    
-    let result = await authServices.logout()
-    switch result {
-    case .success:
-      self.didlogOutAccount()
-    case .failure(let error):
-      self.state = .network(state: .error(error.localizedDescription))
-    }
-  }
-  
-  func deleteAccount() async {
-    state = .network(state: .loading)
-  
-    let result = await authServices.deleteAccount()
-    switch result {
-    case .success:
-      self.didlogOutAccount()
     case .failure(let error):
       self.state = .network(state: .error(error.localizedDescription))
     }

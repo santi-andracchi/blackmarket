@@ -196,8 +196,8 @@ private extension SignUpViewController {
   }
   
   @objc
-  func signUpTapped() async {
-    await viewModel.signup()
+  func signUpTapped() {
+    viewModel.signup()
   }
 }
 
@@ -206,5 +206,4 @@ extension SignUpViewController: SignUpViewModelDelegate {
   func formDidChange() {
     setSignUpButton(enabled: viewModel.hasValidData)
   }
-  
 }

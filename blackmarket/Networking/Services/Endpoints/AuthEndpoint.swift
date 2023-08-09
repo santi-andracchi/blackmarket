@@ -3,7 +3,7 @@ import RSSwiftNetworking
 
 internal enum AuthEndpoint: RailsAPIEndpoint {
   
-  case signIn(
+  case logIn(
     email: String,
     password: String
   )
@@ -12,51 +12,45 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
     password: String,
     passwordConfirmation: String
   )
-  case logout
-  case deleteAccount
+  case getProducts
   
-  private static let usersURL = "/users/"
-  private static let currentUserURL = "/user/"
+  private static let signinURL = "/dj-rest-auth/login/"
   private static let signupURL = "/dj-rest-auth/registration/"
+  private static let productsURL = "/api/products/"
   
   var path: String {
     switch self {
-    case .signIn:
-      return AuthEndpoint.usersURL + "sign_in"
+    case .logIn:
+      return AuthEndpoint.signinURL
     case .signUp:
       return AuthEndpoint.signupURL
-    case .logout:
-      return AuthEndpoint.usersURL + "sign_out"
-    case .deleteAccount:
-      return AuthEndpoint.currentUserURL + "delete_account"
+    case .getProducts:
+      return AuthEndpoint.productsURL
     }
   }
   
   var method: Network.HTTPMethod {
     switch self {
-    case .signIn, .signUp:
+    case .logIn, .signUp:
       return .post
-    case .logout, .deleteAccount:
-      return .delete
+    case .getProducts:
+      return .get
     }
   }
   
   var parameters: [String: Any] {
     switch self {
-    case .signIn(let email, let password):
+    case .logIn(let email, let password):
       return [
-        "user": [
-          "email": email,
-          "password": password
-        ]
+        "email": email,
+        "password": password
       ]
     case .signUp(let email, let password, let passwordConfirmation):
-      let parameters = [
+      return [
         "email": email,
         "password1": password,
         "password2": passwordConfirmation
       ]
-      return ["user": parameters]
     default:
       return [:]
     }
@@ -71,7 +65,7 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
   
   var parameterEncoding: ParameterEncoding {
     switch self {
-    case .signIn, .signUp:
+    case .logIn, .signUp:
       return .httpBody(.json)
     default:
       return .urlQuery

@@ -16,6 +16,8 @@
 		7527B24C2A53226E005BBDD5 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24B2A53226E005BBDD5 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7527B24E2A53226E005BBDD5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24D2A53226E005BBDD5 /* FirebaseAuth */; };
 		7527B2502A53226E005BBDD5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7527B24F2A53226E005BBDD5 /* FirebaseCrashlytics */; };
+		7529D3AA2A856DCC000D9C76 /* SignUpSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529D3A92A856DCC000D9C76 /* SignUpSuccess.swift */; };
+		7529D3AC2A85ECAC000D9C76 /* LogInSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529D3AB2A85ECAC000D9C76 /* LogInSuccess.swift */; };
 		752E43162A72CC9400AAF79E /* PassTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E43152A72CC9400AAF79E /* PassTextField.swift */; };
 		752E43182A72E16E00AAF79E /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E43172A72E16E00AAF79E /* BaseTextField.swift */; };
 		752E43632A72EE5300AAF79E /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 752E431B2A72EE5200AAF79E /* DMSans-Bold.ttf */; };
@@ -107,6 +109,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7529D3A92A856DCC000D9C76 /* SignUpSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccess.swift; sourceTree = "<group>"; };
+		7529D3AB2A85ECAC000D9C76 /* LogInSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInSuccess.swift; sourceTree = "<group>"; };
 		752E43152A72CC9400AAF79E /* PassTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassTextField.swift; sourceTree = "<group>"; };
 		752E43172A72E16E00AAF79E /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		752E431B2A72EE5200AAF79E /* DMSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DMSans-Bold.ttf"; path = "../../../../../Downloads/DM_Sans/static/DMSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				759183572A5712530037841B /* User.swift */,
 				759183562A5712530037841B /* ViewModelState.swift */,
 				759183592A5712530037841B /* NetworkState.swift */,
+				7529D3A92A856DCC000D9C76 /* SignUpSuccess.swift */,
+				7529D3AB2A85ECAC000D9C76 /* LogInSuccess.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				7591831B2A55D22C0037841B /* ViewControllerExtension.swift in Sources */,
 				759183242A55D2490037841B /* TextFieldExtension.swift in Sources */,
 				759183422A57116A0037841B /* AuthEndpoint.swift in Sources */,
+				7529D3AC2A85ECAC000D9C76 /* LogInSuccess.swift in Sources */,
 				7591831C2A55D2310037841B /* FontExtension.swift in Sources */,
 				7591833D2A57114C0037841B /* SessionHeadersProvider.swift in Sources */,
 				759183262A55D24F0037841B /* LabelExtension.swift in Sources */,
@@ -742,6 +749,7 @@
 				7591833F2A57115C0037841B /* APIClient+Application.swift in Sources */,
 				759183452A57117E0037841B /* AuthenticationServices.swift in Sources */,
 				75C040EC2A4E002200BEBFE0 /* HomeViewModel.swift in Sources */,
+				7529D3AA2A856DCC000D9C76 /* SignUpSuccess.swift in Sources */,
 				759183232A55D2460037841B /* JSONEncodingExtension.swift in Sources */,
 				7591836E2A5713200037841B /* FirstViewController.swift in Sources */,
 			);
