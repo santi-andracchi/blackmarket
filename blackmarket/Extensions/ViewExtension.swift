@@ -2,9 +2,9 @@ import Foundation
 import UIKit
 
 extension UIView {
-
+  
   // MARK: - Instance methods
-
+  
   // Change the default values for params as you wish
   func addBorder(color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
     layer.borderColor = color.cgColor
@@ -33,8 +33,8 @@ extension UIView {
   ) -> UIView {
     let name = String(describing: type(of: self))
     guard let view = instanceFromNib(withName: nibName ?? name) else {
-        assert(false, "No nib found with that name")
-        return UIView()
+      assert(false, "No nib found with that name")
+      return UIView()
     }
     view.frame = bounds
     view.autoresizingMask = masks
@@ -50,13 +50,13 @@ extension UIView {
   }
   
   // MARK: Constrains Helper
-
+  
   func addSubviews(subviews: [UIView]) {
     for subview in subviews {
       addSubview(subview)
     }
   }
-
+  
   func attachHorizontally(
     to view: UIView,
     leadingMargin: CGFloat = UI.Defaults.margin,
@@ -70,7 +70,7 @@ extension UIView {
       )
     ])
   }
-
+  
   func attachVertically(
     to view: UIView,
     topMargin: CGFloat = UI.Defaults.margin,
@@ -81,7 +81,7 @@ extension UIView {
       bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomMargin)
     ])
   }
-
+  
   /// Centers the view horizontally and vertically with a specific view
   ///
   /// - Parameters:
@@ -92,7 +92,7 @@ extension UIView {
     centerHorizontally(with: view, withOffset: offset.x)
     centerVertically(with: view, withOffset: offset.y)
   }
-
+  
   /// Centers the view horizontally with a specific view
   ///
   /// - Parameters:
@@ -107,7 +107,7 @@ extension UIView {
       constant: offset
     ).isActive = true
   }
-
+  
   /// Centers the view vertically with a specific view
   ///
   /// - Parameters:

@@ -5,7 +5,7 @@ protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
 }
 
 internal class SignInViewModelWithCredentials {
-
+  
   private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
@@ -27,11 +27,11 @@ internal class SignInViewModelWithCredentials {
   }
   
   var hasValidCredentials: Bool {
-      email.isEmailFormatted() && !password.isEmpty
+    email.isEmailFormatted() && !password.isEmpty
   }
-
+  
   private let authServices: AuthenticationServices
-
+  
   init(authServices: AuthenticationServices = AuthenticationServices()) {
     self.authServices = authServices
   }
@@ -44,13 +44,13 @@ internal class SignInViewModelWithCredentials {
     ) { [weak self] result in
       guard let self = self else { return }
       switch result {
-        case .success:
-          self.state = .loggedIn
-          AnalyticsManager.shared.identifyUser(with: self.email)
-          AnalyticsManager.shared.log(event: Event.login)
-        case .failure(let error):
-          self.state = .network(state: .error(error.localizedDescription))
-        }
+      case .success:
+        self.state = .loggedIn
+        AnalyticsManager.shared.identifyUser(with: self.email)
+        AnalyticsManager.shared.log(event: Event.login)
+      case .failure(let error):
+        self.state = .network(state: .error(error.localizedDescription))
+      }
     }
   }
 }

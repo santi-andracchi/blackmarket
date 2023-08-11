@@ -19,7 +19,7 @@ extension String {
   var localized: String {
     self.localize()
   }
-    
+  
   func localize(comment: String = "") -> String {
     NSLocalizedString(self, comment: comment)
   }

@@ -2,7 +2,7 @@ import UIKit
 import RSFontSizes
 
 extension UIFont {
-
+  
   static let h0Black = Font.dmSansBlack.uiFont(withSize: .heading0)
   static let h1Black = Font.dmSansBlack.uiFont(withSize: .heading1)
   static let h2Black = Font.dmSansBlack.uiFont(withSize: .heading2)

@@ -1,11 +1,11 @@
 import UIKit
 
 class FirstViewController: UIViewController,
-  AuthViewModelStateDelegate,
-  ActivityIndicatorPresenter {
+                           AuthViewModelStateDelegate,
+                           ActivityIndicatorPresenter {
   
   // MARK: - Views
-    
+  
   private lazy var titleLabel = UILabel.titleLabel(
     text: "firstscreen_title".localized
   )
@@ -15,7 +15,7 @@ class FirstViewController: UIViewController,
     target: self,
     action: #selector(signInTapped)
   )
-
+  
   private lazy var signUpButton = UIButton.primaryButton(
     color: .clear,
     title: "firstscreen_registre_button_title".localized,
@@ -62,18 +62,16 @@ class FirstViewController: UIViewController,
     activateConstraints()
     setupAccessibility()
   }
-
+  
   private func setupAccessibility() {
     signUpButton.accessibilityIdentifier = "GoToSignUpButton"
     signInButton.accessibilityIdentifier = "GoToSignInButton"
   }
   
   private func activateConstraints() {
-//    facebookSignButton.centerHorizontally(with: view)
     signInButton.centerHorizontally(with: view)
     titleLabel.attachHorizontally(to: view)
     signUpButton.attachHorizontally(to: view)
-//    facebookSignButton.attachHorizontally(to: view)
     
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
@@ -85,10 +83,6 @@ class FirstViewController: UIViewController,
         equalTo: view.bottomAnchor,
         constant: -UI.Defaults.margin
       ),
-//      facebookSignButton.bottomAnchor.constraint(
-//        equalTo: signUpButton.topAnchor,
-//        constant: -UI.Button.spacing
-//      ),
       signInButton.bottomAnchor.constraint(
         equalTo: signUpButton.topAnchor,
         constant: -UI.Button.spacing
@@ -98,7 +92,7 @@ class FirstViewController: UIViewController,
   }
   
   // MARK: - Actions
-
+  
   @objc
   func signInTapped() {
     AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)

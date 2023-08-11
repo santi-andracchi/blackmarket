@@ -6,29 +6,29 @@ internal protocol CurrentUserSessionProvider {
 }
 
 internal class SessionHeadersProvider: SessionProvider {
-
+  
   // MARK: - Properties
-
+  
   var uid: String? {
     session?.uid
   }
-
+  
   var client: String? {
     session?.client
   }
-
+  
   var accessToken: String? {
     session?.accessToken
   }
-
+  
   private let currentSessionProvider: CurrentUserSessionProvider
-
+  
   private var session: Session? {
     currentSessionProvider.currentSession
   }
-
+  
   // MARK: -
-
+  
   init(currentSessionProvider: CurrentUserSessionProvider = SessionManager.shared) {
     self.currentSessionProvider = currentSessionProvider
   }

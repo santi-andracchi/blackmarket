@@ -1,122 +1,65 @@
 import Foundation
 import UIKit
 import RSSwiftNetworking
+import RSSwiftNetworkingAlamofire
 
 internal class AuthenticationServices {
-
-  enum AuthError: Error {
+  
+  enum AuthError: LocalizedError {
+    case login
+    case signUp
+    case logout
+    case mapping
+    case request
     case userSessionInvalid
+    
+    var errorDescription: String? {
+      switch self {
+      case .login:
+        return "authError_login".localized
+      case .signUp:
+        return "authError_signUp".localized
+      case .logout:
+        return "authError_logout".localized
+      case .mapping:
+        return "authError_mapping".localized
+      case .request:
+        return "authError_request".localized
+      case .userSessionInvalid:
+        return "authError_request".localized
+      }
+    }
   }
-
+  
   // MARK: - Properties
   
   fileprivate static let usersUrl = "/users/"
   fileprivate static let currentUserUrl = "/user/"
-
+  
   private let sessionManager: SessionManager
-
-  private let apiClient: APIClient
-
+  private let userDataManager: UserDataManager
+  private let apiClient = BaseAPIClient.alamofire
+  
   init(
     sessionManager: SessionManager = .shared,
-    apiClient: APIClient = iOSBaseAPIClient.shared
+    userDataManager: UserDataManager = .shared
   ) {
     self.sessionManager = sessionManager
-    self.apiClient = apiClient
+    self.userDataManager = userDataManager
   }
   
   func login(
     email: String,
     password: String,
-    completion: @escaping (Result<Void, Error>) -> Void
+    completion: @escaping (Result<LogInSuccess, Error>) -> Void
   ) {
     apiClient.request(
-      endpoint: AuthEndpoint.signIn(email: email, password: password)
-    ) { [weak self] (result: Result<User?, Error>, responseHeaders: [AnyHashable: Any]) in
+      endpoint: AuthEndpoint.logIn(email: email, password: password)
+    ) { [weak self] (result: Result<LogInSuccess?, Error>, responseHeaders: [AnyHashable: Any]) in
       switch result {
-        case .success(let user):
-          if self?.saveUserSession(user, headers: responseHeaders) ?? false {
-            completion(.success(()))
-          } else {
-            completion(.failure(AuthError.userSessionInvalid))
-          }
-        case .failure(let error):
-          completion(.failure(error))
-        }
-    }
-  }
-  
-  /// Example Upload via Multipart requests.
-  /// TODO: rails base backend not supporting multipart uploads yet
-//  func signup(
-//    email: String,
-//    password: String,
-//    avatar: UIImage,
-//    completion: @escaping (Result<User, Error>) -> Void
-//  ) {
-//    guard let picData = avatar.jpegData(compressionQuality: 0.75) else {
-//      let pictureDataError = App.error(
-//        domain: .generic,
-//        localizedDescription: "Multipart image data could not be constructed"
-//      )
-//      completion(.failure(pictureDataError))
-//      return
-//    }
-//
-//    // Mixed base64 encoded and multipart images are supported
-//    // in the [MultipartMedia] array
-//    // Example: `let image2 = Base64Media(key: "user[image]", data: picData)`
-//    // Then: media [image, image2]
-//    let image = MultipartMedia(key: "user[avatar]", data: picData)
-//
-//    let endpoint = AuthEndpoint.signUp(
-//      email: email,
-//      password: password,
-//      passwordConfirmation: password,
-//      picture: nil
-//    )
-//
-//    apiClient.multipartRequest(
-//      endpoint: endpoint, paramsRootKey: "", media: [image]
-//    ) { [weak self] (result: Result<User?, Error>, responseHeaders: [AnyHashable: Any]) in
-//      switch result {
-//      case .success(let user):
-//        if
-//          let user = user,
-//          self?.saveUserSession(user, headers: responseHeaders) ?? false
-//        {
-//          completion(.success(user))
-//        } else {
-//          completion(.failure(AuthError.userSessionInvalid))
-//        }
-//      case .failure(let error):
-//        completion(.failure(error))
-//      }
-//    }
-//  }
-  
-  /// Example method that uploads base64 encoded image.
-  func signup(
-    email: String,
-    password: String,
-    avatar64: UIImage,
-    completion: @escaping (Result<User, Error>) -> Void
-  ) {
-    apiClient.request(
-      endpoint: AuthEndpoint.signUp(
-        email: email,
-        password: password,
-        passwordConfirmation: password,
-        picture: avatar64.jpegData(compressionQuality: 0.75)
-      )
-    ) { [weak self] (result: Result<User?, Error>, responseHeaders) in
-      switch result {
-      case .success(let user):
-        if
-          let user = user,
-          self?.saveUserSession(user, headers: responseHeaders) ?? false
-        {
-          completion(.success(user))
+      case .success(let logInSuccess):
+        if self?.saveUserSession(user: logInSuccess!.user, accessToken: logInSuccess!.access_token, refreshToken: logInSuccess!.refresh_token) ?? false {
+          completion(.success(logInSuccess.unsafelyUnwrapped))
         } else {
           completion(.failure(AuthError.userSessionInvalid))
         }
@@ -126,30 +69,28 @@ internal class AuthenticationServices {
     }
   }
   
-  func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+  func signup(
+    email: String,
+    password: String,
+    avatar64: UIImage,
+    completion: @escaping (Result<SignUpSuccess, Error>) -> Void
+  ) {
     apiClient.request(
-      endpoint: AuthEndpoint.logout
-    ) { [weak self] (result: Result<Network.EmptyResponse?, Error>, _) in
+      endpoint: AuthEndpoint.signUp(
+        email: email,
+        password: password,
+        passwordConfirmation: password
+      )
+    ) { [weak self] (result: Result<SignUpSuccess?, Error>, responseHeaders) in
       switch result {
-      case .success:
-        UserDataManager.deleteUser()
-        self?.sessionManager.deleteSession()
-        completion(.success(()))
-      case .failure(let error):
-        completion(.failure(error))
-      }
-    }
-  }
-  
-  func deleteAccount(completion: @escaping (Result<Void, Error>) -> Void) {
-    apiClient.request(
-      endpoint: AuthEndpoint.deleteAccount
-    ) { [weak self] (result: Result<Network.EmptyResponse?, Error>, _) in
-      switch result {
-      case .success:
-        UserDataManager.deleteUser()
-        self?.sessionManager.deleteSession()
-        completion(.success(()))
+      case .success(let signupSuccess):
+        if
+          let signupSuccess = signupSuccess
+        {
+          completion(.success(signupSuccess))
+        } else {
+          completion(.failure(AuthError.userSessionInvalid))
+        }
       case .failure(let error):
         completion(.failure(error))
       }
@@ -157,12 +98,14 @@ internal class AuthenticationServices {
   }
   
   private func saveUserSession(
-    _ user: User?,
-    headers: [AnyHashable: Any]
+    user: User?,
+    accessToken: String,
+    refreshToken: String
   ) -> Bool {
-    UserDataManager.currentUser = user
-    sessionManager.currentSession = Session(headers: headers)
-
-    return UserDataManager.currentUser != nil && sessionManager.validSession
+    userDataManager.currentUser = user
+    guard let session = Session(user: user, accessToken: accessToken, refreshToken: refreshToken) else { return false }
+    sessionManager.saveUser(session: session)
+    
+    return userDataManager.currentUser != nil && sessionManager.currentSession?.isValid ?? false
   }
 }

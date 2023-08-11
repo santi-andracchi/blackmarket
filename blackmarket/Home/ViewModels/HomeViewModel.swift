@@ -21,10 +21,10 @@ class HomeViewModel {
       delegate?.didUpdateState(to: state)
     }
   }
-
+  
   private let userServices: UserServices
   private let authServices: AuthenticationServices
-
+  
   init(
     userServices: UserServices = UserServices(),
     authServices: AuthenticationServices = AuthenticationServices()
@@ -33,43 +33,16 @@ class HomeViewModel {
     self.authServices = authServices
   }
   
-  func loadUserProfile() {
+  func loadUserProfile() async {
     state = .network(state: .loading)
     
-    userServices.getMyProfile { [weak self] (result: Result<User, Error>) in
-      switch result {
-      case .success(let user):
-        self?.userEmail = user.email
-        self?.state = .loadedProfile
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
-    }
-  }
-  
-  func logoutUser() {
-    state = .network(state: .loading)
-    
-    authServices.logout { [weak self] result in
-      switch result {
-      case .success:
-        self?.didlogOutAccount()
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
-    }
-  }
-  
-  func deleteAccount() {
-    state = .network(state: .loading)
-  
-    authServices.deleteAccount { [weak self] result in
-      switch result {
-      case .success:
-        self?.didlogOutAccount()
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
+    let result = await userServices.getMyProfile()
+    switch result {
+    case .success(let user):
+      self.userEmail = user.data.email
+      self.state = .loadedProfile
+    case .failure(let error):
+      self.state = .network(state: .error(error.localizedDescription))
     }
   }
   

@@ -1,41 +1,60 @@
 import UIKit
+import Combine
 
 internal class SessionManager: CurrentUserSessionProvider {
-
-  static let shared = SessionManager()
-
+  
+  var isSessionValidPublisher: AnyPublisher<Bool, Never> {
+    currentSessionPublisher.map { $0?.isValid ?? false }.eraseToAnyPublisher()
+  }
+  
+  private var currentSessionPublisher: AnyPublisher<Session?, Never> {
+    userDefaults.publisher(for: \.currentSession).eraseToAnyPublisher()
+  }
+  
+  private var subscriptions = Set<AnyCancellable>()
   private let userDefaults: UserDefaults
-
+  
+  static let SESSIONKEY = "ios-base-session"
+  
+  static let shared = SessionManager()
+  
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
   }
+  
+  private(set) var currentSession: Session? {
+    get {
+      userDefaults.currentSession
+    }
+    
+    set {
+      userDefaults.currentSession = newValue
+    }
+  }
+  
+  func deleteSession() {
+    currentSession = nil
+  }
+  
+  func saveUser(session: Session) {
+    userDefaults.currentSession = session
+  }
+}
 
-  var currentSession: Session? {
+fileprivate extension UserDefaults {
+  dynamic var currentSession: Session? {
     get {
       if
-        let data = userDefaults.data(forKey: "ios-base-session"),
+        let data = data(forKey: SessionManager.SESSIONKEY),
         let session = try? JSONDecoder().decode(Session.self, from: data)
       {
         return session
       }
       return nil
     }
-    
     set {
       let session = try? JSONEncoder().encode(newValue)
-      userDefaults.set(session, forKey: "ios-base-session")
+      set(session, forKey: SessionManager.SESSIONKEY)
     }
-  }
-  
-  func deleteSession() {
-    userDefaults.removeObject(forKey: "ios-base-session")
-  }
-  
-  var validSession: Bool {
-    if let session = currentSession, let uid = session.uid,
-       let tkn = session.accessToken, let client = session.client {
-      return !uid.isEmpty && !tkn.isEmpty && !client.isEmpty
-    }
-    return false
   }
 }

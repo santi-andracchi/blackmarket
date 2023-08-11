@@ -27,7 +27,7 @@ extension UIButton {
     }
     return button
   }
-
+  
   static func secondaryButton(
     color: UIColor = .black,
     title: String = "",
@@ -56,7 +56,7 @@ extension UIButton {
     }
     return button
   }
-
+  
   
   private func setup(
     color: UIColor = .red,
